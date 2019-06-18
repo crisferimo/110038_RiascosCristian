@@ -152,8 +152,48 @@ if suma in fib(suma):
     
 else:
     print('La suma del número ingresado no es un número de fibonnaci.')
+    
+    
+    # In[ ]:
+    
+#%% 8. Iterar a través de los primeros cien enteros positivos, buscando los múltiplos de 3 e imprimiendo y almacenándolos en
+#%% una lista hasta encontrar los primeros 15 de ellos. Una vez encontrados, continuar iterando en busca de los múltiplos
+#%% de 4 y almacenarlos en otra lista.
 
+rango_inferior = 1
+rango_superior = 101
+Limite_3 = 16
+Inicio_4 = Limite_3-5
+multiples_3=[3]  #Lista de los multiplos de 3
+multiples_4=[]  #Lista de los multiplos de 4
 
+#%% Función
+
+def multiple(valor, multiple):
+
+#%% Contidición de la función
+    
+    residuo = valor % multiple
+    if residuo == 0:
+        return True
+    else:
+        return False
+
+#%%Multiplos de 3
+
+for i in range(rango_inferior,rango_superior):# bucle del 1 al 100
+    if multiple(i,3):
+        multiples_3.append(i)
+print('Los primeros 15 multiplos de 3 son: ',multiples_3[rango_inferior:Limite_3])
+
+#%%Multiplos de 4
+
+for j in range(rango_inferior,rango_superior):
+    if multiple(j,4):
+        multiples_4.append(j)
+print('De los restantes números, los multiplos de 4 son: ',multiples_4[Inicio_4:rango_superior])
+
+    
 # In[ ]:
 
 
@@ -195,7 +235,7 @@ for i in range(0, tamaño):
         print(F"{piramid}", end=' ')
     print(" ")
 
-
+   
 # In[ ]:
 
 
