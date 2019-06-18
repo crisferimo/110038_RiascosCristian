@@ -155,6 +155,14 @@ else:
     
     
     # In[ ]:
+
+
+#%% 7. Leer un número entero positivo y determine si existen en el número dígitos repetidos. Reporte cuales son los dígitos
+#%% repetidos.
+
+
+    
+    # In[ ]:
     
 #%% 8. Iterar a través de los primeros cien enteros positivos, buscando los múltiplos de 3 e imprimiendo y almacenándolos en
 #%% una lista hasta encontrar los primeros 15 de ellos. Una vez encontrados, continuar iterando en busca de los múltiplos
@@ -192,6 +200,139 @@ for j in range(rango_inferior,rango_superior):
     if multiple(j,4):
         multiples_4.append(j)
 print('De los restantes números, los multiplos de 4 son: ',multiples_4[Inicio_4:rango_superior])
+
+
+# In[ ]:
+
+
+#%% 9. Hacer un programa que lea las coordenadas (x1,y1,r1) y (x2,y2,r2) que corresponden al centro y al radio de dos círculos.
+#%% Lea un punto de coordenadas (a,b). Determina si (a,b) está contenido: a) dentro del círculo 1; b) dentro del círculo 2;
+#%% c) dentro de ambos círculos; d) fuera de ambos círculos. Recordemos que el círculo es el lugar geométrico de los puntos
+#%% del plano cuya distancia a otro punto fijo, llamado centro, es menor o igual que una cantidad constante, llamada radio.
+
+def distancia(x, y, a, b):
+    
+#teorema de pitágoras
+    dist= (((x - a) ** 2)+((y - b) ** 2)) ** (1 / 2)
+    return dist
+
+# Ingresar los datos del círculo 1.
+    
+while True :
+    try:
+        coord_x_1= int(input('Ingresar la coordenada en X del círculo 1: '))
+        break
+    except ValueError :
+        print ('\nEl valor ingresado no es correcto, intentelo de nuevo')
+
+while True :
+    try:
+        coord_y_1= int(input('Ingresar la coordenada en Y del círculo 1: '))
+        break
+    except ValueError :
+        print ('\nEl valor ingresado no es correcto, intentelo de nuevo')
+        
+while True :
+    try:
+        r_1= int(input('Ingrese el radio del círculo 1: '))
+        if r_1 >= 0 : break
+    except ValueError :
+        print ('\nEl valor ingresado no es correcto, intente de nuevo')
+
+#datos para el circulo 2.
+    
+while True :
+    try:
+        coord_x_2= int(input('Ingresar la coordenada en X del círculo 2: '))
+        break
+    except ValueError :
+        print ('\nEl valor ingresado no es correcto, intente de nuevo')
+
+while True :
+    try:
+        coord_y_2= int(input('Ingresar la coordenada en Y del círculo 2: '))
+        break
+    except ValueError :
+        print ('\nEl valor ingresado no es correcto, intente de nuevo')
+        
+while True :
+    try:
+        r_2= int(input('Por favor ingrese el radio del círculo 2: '))
+        if r_2 >= 0 : break
+    except ValueError :
+        print ('\nEl valor ingresado no es correcto, intente de nuevo')
+
+# Ingresar las coordenadas del punto (a,b) a evaluar.
+    
+while True :
+    try:
+        a= int(input('Por favor ingrese la coordenada en X del punto: '))
+        break
+    except ValueError :
+        print ('\nEl valor ingresado no es correcto, intente de nuevo')
+
+while True :
+    try:
+        b= int(input('Por favor ingrese la coordenada en Y del punto: '))
+        break
+    except ValueError :
+        print ('\nEl valor ingresado no es correcto, intente de nuevo')
+
+# Ejecutar la función nombrada al inicio de código.
+        
+distancia_a_1= distancia(coord_x_1, coord_y_1, a, b)
+distancia_a_2= distancia(coord_x_2, coord_y_2, a, b)
+
+# Evaluar las condiciones de impresión.
+
+if distancia_a_1 <= r_1 and distancia_a_2 <= r_2:
+    print ('\nEl punto', a,',', b, 'se encuentra dentro de ambos círculos.')
+    
+elif distancia_a_1 > r_1 and distancia_a_2 <= r_2:
+    print ('\nEl punto', a,',', b, 'se encuentra solo dentro del círculo 2.')
+    
+elif distancia_a_1 <= r_1 and distancia_a_2 > r_2:
+    print ('\nEl punto', a,',', b, 'se encuentra solo dentro del círculo 1.')
+    
+elif distancia_a_1 > r_1 and distancia_a_2 > r_2:
+    print ('\nEl punto', a,',', b, 'no se encuentra dentro de ningún círculo.')
+
+
+# In[ ]:
+
+
+#%% 10. Sin utilizar el método .upper() para cadenas, escribir un programa que lea una cadena de texto y la imprima en
+#%% mayúscula. Tenga en cuenta que el programa debe aceptar las letras con tilde, la ñ y la ü.
+
+def imprimir_en_mayuscula(long):
+    
+    for n in range (long + 1) :
+        if n == long :
+            break
+        else: 
+            code = ord (cad[n])
+            if 224 <= code <= 252 or 97 <= code <= 122:
+                code -= 32
+                caracter= chr((code))
+                print (caracter, end='')
+            else:
+                caracter= chr((code))
+                print (caracter, end='')
+    return caracter
+
+while True :
+    try:
+        cad= input('Por favor ingrese una cadena de texto: ')
+        break
+    except ValueError :
+        print ('\nEl valor ingresado no es correcto, intente de nuevo')
+        
+ 
+long = len(cad)
+
+print ('\nLa cadena de texto escrita en mayusculas es:')
+
+cadena_en_mayuscula= imprimir_en_mayuscula(long)
 
     
 # In[ ]:
