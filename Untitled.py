@@ -160,7 +160,30 @@ else:
 #%% 7. Leer un número entero positivo y determine si existen en el número dígitos repetidos. Reporte cuales son los dígitos
 #%% repetidos.
 
-
+a=[]
+valor=abs(valor)
+while (valor>=10):
+    res=valor%10
+    a.append(res)
+    valor=valor//10
+a.append(valor) 
+b=[]
+for i in range (0,len(a)):
+    b.append(a[-i-1]) 
+c=[]
+for i in range (0,len(b)):
+    for j in range(i+1,len(b)):
+        if b[i]==b[j]:
+            c.append(b[i]) 
+for i in range(0,len(c)):
+    for j in range(i+1,len(c)):
+        if c[i]==c[j]:
+            c[j]='a'          
+d=[]
+for i in range(0,len(c)):
+    if c[i]!='a':
+        d.append(c[i]) 
+print(d)
     
     # In[ ]:
     
@@ -441,3 +464,24 @@ while contador3 >=0:
     b1 = b.pop(contador3-1)
     contador3 = defina-1
 
+
+# In[ ]:
+
+
+#%% 17
+
+
+# In[ ]:
+
+
+#%% 18
+
+# In[ ]:
+
+
+#%% 19
+
+# In[ ]:
+
+
+#%% 20
