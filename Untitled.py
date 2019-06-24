@@ -357,7 +357,38 @@ print ('\nLa cadena de texto escrita en mayusculas es:')
 
 cadena_en_mayuscula= imprimir_en_mayuscula(long)
 
-    
+# In[ ]:
+
+
+#%% 11. Escribir un programa que reciba una cadena de texto y reporte:
+#%% a) cuántas letras vocales en mayúscula se entraron;
+#%% b) cuántas letras con tilde se entraron (minúsculas y mayúsculas);
+#%% c) cuántos dígitos se entraron,
+#%% d) cuántos espacios se entraron;
+#%% e) cuántas palabras reservadas se entraron.
+
+texto=input('digite un texto: ')
+cont1=0 
+cont2=0  
+cont3=0  
+cont4=0  
+cont5=0 
+for i in range(0,len(texto)):
+    valor=ord(texto[i]) 
+    if(valor==65 or valor==69 or valor==73 or valor==79 or valor==85):
+        cont1=cont1+1
+    elif (valor==193 or valor==201 or valor==205 or valor==211 or valor==218 or
+          valor==225 or valor==233 or valor==237 or valor==243 or valor==250):      
+        cont2=cont2+1      
+    elif(texto[i].isdigit()):
+        cont3=cont3+1
+    if (texto[i]==' '):
+        cont4=cont4+1
+print('existen',cont1,'vocales mayusculas')
+print('existen',cont2,'letras con tilde')
+print('existen',cont3,'digitos introducidos')
+print('existen',cont4,'cantidad de espacios')
+
 # In[ ]:
 
 
@@ -468,20 +499,130 @@ while contador3 >=0:
 # In[ ]:
 
 
-#%% 17
+#%% 17. Leer una lista y determinar cuál es el segundo elemento más grande de dicha lista. No utilice ningún tipo de algoritmo
+#%% de ordenamiento para realizar este ejercicio.
 
+cant=(int)(input('cuantos elementos va a introducir: '))#cant numeros
+vec=[]
+
+for i in range(cant):
+    vec.append(input('introduzca el elemento '+str(i+1)+':'))
+
+for i in range(len(vec)):
+    for j in range(len(vec)):
+        if vec[i]<vec[j]:
+            tmp=vec[i]
+            vec[i]=tmp
+            
+print(vec[len(vec)-2])
 
 # In[ ]:
 
 
-#%% 18
+#%% 18. Leer una matriz cuadrada A, obtener su matriz triangular superior asociada U y determinar qué fila de U contiene la
+#%% mayor cantidad de unos.
+
+tamano=(int)(input('ingrese el tamaño de la matriz cuadrada: '))
+A=[] 
+
+for i in range(tamano):
+    A.append([])
+    for j in range (tamano):
+        A[i].append((float)(input('numero para la posicion '+str(i+1)+','+str(i-1)+':')))
+        
+T=[]
+cant1=[] 
+for i in range(tamano): 
+    T.append([])
+    for j in range(tamano):
+        if i>j:
+            T[i].append(0)
+        else:
+            T[i].append(A[i][j])
+    
+    cant1.append(T[i].count(1))
+b=cant1.index(max(cant1))
+a=cant1.count(max(cant1))
+if max(cant1)==0:
+    print('no hay unos en la matriz')
+elif a==1:
+    print('cantidad mayor de unos se encuentra en la fila ',b+1)
+    
+else: 
+    B=[] 
+    for i in range(len(cant1)):
+        if cant1[i]==max(cant1):
+            B.append(i)
+    print('las filas con mayor numero de unos son las siguientes: ',B)
 
 # In[ ]:
 
 
-#%% 19
+#%% 19. Leer una lista e identifique la sublista más larga dentro de dicha lista que se encuentra ordenada ascendentemente.
+#%% Por ejemplo, en la lista [5, 6, 5, 1, 2, 6, 9, 2, 4, 1] la mayor sublista ordenada es la [1, 2, 6, 9].
 
+cant=(int)(input('Que cantidad de elementos desea en la lista: '))
+Lista=[]
+
+for i in range(cant):
+    Lista.append((input('Ingrese el elemento numero '+str(i+1)+': ')))
+A=[]    
+tamano=[]   
+for i in range(len(Lista)-1): 
+    A.append([])    
+    A[i].append(Lista[i]) 
+    for j in range(i+1,len(Lista)):
+        if Lista[j-1]<=Lista[j]:
+            A[i].append(Lista[j])
+        else:
+            break
+    tamano.append(len(A[i]))  
+cantMayor=tamano.count(max(tamano)) 
+pos=tamano.index(max(tamano))
+subLista=[]
+if (cantMayor==1):
+    print('La sublista mas larga ordenada ascendentemente es: ',A[pos])
+else:
+    a=-1    
+            
+    for i in range(cantMayor):        
+        a=tamano.index(max(tamano),a+1)            
+        subLista.append(A[a])                
+    print('Las sublistas mas largas ordenadas ascendentemente son: ',subLista)
 # In[ ]:
 
 
-#%% 20
+#%% 20. Hacer un programa que lea una matriz y la rote 90 grados en sentido antihorario. Imprimir la matriz resultante. Por
+#%% ejemplo, dada la matriz
+#%% 62 42 70 66 10
+#%% 35 10 4 92 94
+#%% 33 37 5 100 19
+#%% 79 44 72 53 91
+#%% la matriz solicitada es la:
+#%% 10 94 19 91
+#%% 66 92 100 53
+#%% 70 4 5 72
+#%% 42 10 37 44
+#%% 62 35 33 79
+#%% Repita el mismo ejercicio utilizando el módulo numpy.
+
+
+m=(int)(input('digite el numero de filas: ')) #numero de filas
+n=(int)(input('digite el numero de columnas: ')) #numero de columnas
+matriz=[] #se crea matriz
+#para llenar la matriz
+for i in range(m):
+    matriz.append([]) #se crea sublista dependiendo numero de filas
+    a=i+1
+    for j in range(n): 
+        b=j+1     
+        matriz[i].append(input(f'digite valor {a},{b}: '))  
+        
+matrizres=[] #matriz que se gira
+print('\n')
+for i in range(n):
+    matrizres.append([])
+    #se empieza a mover los valores
+    for j in range(m):
+        matrizres[i].append(matriz[j][-i-1])
+    print(matrizres[i])
